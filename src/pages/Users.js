@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
 import { fetchUser, setModal } from "../redux/action/postAction";
+
+import { image } from "faker";
+import { Link } from "react-router-dom";
 
 class Users extends Component {
   state = {
@@ -15,45 +18,48 @@ class Users extends Component {
   };
   render() {
     const { users, loading } = this.props;
-    const { status } = this.state;
+    // const { status } = this.state;
     return (
-      <>
-        <Modal status={status} onCancel={() => this.setState({ status: "" })} />
+      <div className="ui container segment " >
+        <h1>Users</h1>
+        {/* <Modal status={status} onCancel={() => this.setState({ status: "" })} /> */}
         {loading === true ? (
-          <div class="ui segment">
+          <div className="ui container segment">
             <p></p>
-            <div class="ui active dimmer">
-              <div class="ui loader"></div>
+            <div className="ui active dimmer">
+              <div className="ui loader"></div>
             </div>
           </div>
         ) : (
           <div className="ui links four cards">
-            {users.map(({ name, email, phone, website, address }) => (
-              <div class="card" onClick={this.onClick}>
-                <div class="image">
-                  <img src="/images/avatar2/large/matthew.png" alt="image3" />
+            {users.map(({id, name, email, phone, website, address },index) => (
+              
+              <Link to={`/userdetail/${id}`} className="card" key={index.toString()}  >
+                <div className="image">
+                  <img src={image.image()} alt="image3" />
                 </div>
-                <div class="content">
-                  <div class="header">{name}</div>
-                  <div class="meta">
-                    <a href>{email}</a>
+                <div className="content">
+                  <div className="header">{name}</div>
+                  <div className="meta">
+                    <a href="@">{email}</a>
                   </div>
-                  <div class="description">
+                  <div className="description">
                     {address.street},{address.city}
                   </div>
                 </div>
-                <div class="extra content">
-                  <span class="right floated">{phone}</span>
+                <div className="extra content">
+                  <span className="right floated">{phone}</span>
                   <span>
-                    <i class="user icon"></i>
+                    <i className="user icon"></i>
                     {website}
                   </span>
                 </div>
-              </div>
+              </Link>
+              
             ))}
           </div>
         )}
-      </>
+      </div>
     );
   }
 }

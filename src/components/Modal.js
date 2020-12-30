@@ -1,16 +1,18 @@
 import React from "react";
 
-const Modal = ({ status ,onCancel}) => {
+const Modal = ({ status, onCancel }) => {
   return (
     <div className={`ui ${status} fullscreen transition  modal`}>
-      <div class="header">Header</div>
-      <div class="content">
+      <div className="header">Header</div>
+      <div className="content">
         <p></p>
       </div>
-      <div class="actions">
-        <div class="ui approve button" >Approve</div>
-        <div class="ui button">Neutral</div>
-        <div class="ui cancel button" onClick={onCancel} >Cancel</div>
+      <div className="actions">
+        <div className="ui approve button">Approve</div>
+        <div className="ui button">Neutral</div>
+        <div className="ui cancel button" onClick={onCancel}>
+          Cancel
+        </div>
       </div>
     </div>
   );
