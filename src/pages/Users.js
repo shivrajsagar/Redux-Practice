@@ -20,7 +20,7 @@ class Users extends Component {
     const { users, loading } = this.props;
     // const { status } = this.state;
     return (
-      <div className="ui container segment " >
+      <div className="ui container segment ">
         <h1>Users</h1>
         {/* <Modal status={status} onCancel={() => this.setState({ status: "" })} /> */}
         {loading === true ? (
@@ -32,31 +32,35 @@ class Users extends Component {
           </div>
         ) : (
           <div className="ui links four cards">
-            {users.map(({id, name, email, phone, website, address },index) => (
-              
-              <Link to={`/userdetail/${id}`} className="card" key={index.toString()}  >
-                <div className="image">
-                  <img src={image.image()} alt="image3" />
-                </div>
-                <div className="content">
-                  <div className="header">{name}</div>
-                  <div className="meta">
-                    <a href="@">{email}</a>
+            {users.map(
+              ({ id, name, email, phone, website, address }, index) => (
+                <Link
+                  to={`/userdetail/${id}`}
+                  className="card"
+                  key={index.toString()}
+                >
+                  <div className="image">
+                    <img src={image.image()} alt="image3" />
                   </div>
-                  <div className="description">
-                    {address.street},{address.city}
+                  <div className="content">
+                    <div className="header">{name}</div>
+                    <div className="meta">
+                      <a href="@">{email}</a>
+                    </div>
+                    <div className="description">
+                      {address.street},{address.city}
+                    </div>
                   </div>
-                </div>
-                <div className="extra content">
-                  <span className="right floated">{phone}</span>
-                  <span>
-                    <i className="user icon"></i>
-                    {website}
-                  </span>
-                </div>
-              </Link>
-              
-            ))}
+                  <div className="extra content">
+                    <span className="right floated">{phone}</span>
+                    <span>
+                      <i className="user icon"></i>
+                      {website}
+                    </span>
+                  </div>
+                </Link>
+              )
+            )}
           </div>
         )}
       </div>
